@@ -4,7 +4,6 @@
 #include "mui_element.h"
 #include "mui_qrcode_helper.h"
 #include "settings.h"
-#include "mini_app_launcher.h"
 
 #define ICON_LEFT 0xe1ac
 #define ICON_RIGHT 0xe1aa
@@ -109,11 +108,6 @@ static void amiibo_view_on_draw(mui_view_t *p_view, mui_canvas_t *p_canvas) {
 
 static void amiibo_view_on_input(mui_view_t *p_view, mui_input_event_t *event) {
     amiibo_view_t *p_amiibo_view = p_view->user_data;
-    if (event->type == INPUT_TYPE_LONG && event->key == INPUT_KEY_CENTER) {
-        // long press center button = go back
-        mini_app_launcher_back(mini_app_launcher());
-        return;
-    }
     if (event->type == INPUT_TYPE_REPEAT || event->type == INPUT_TYPE_LONG) {
         switch (event->key) {
         case INPUT_KEY_LEFT:
