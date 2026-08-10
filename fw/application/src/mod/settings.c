@@ -16,7 +16,8 @@
 #define DEFAULT_BAT_MODE 0
 #endif // OLED_SCREEN
 
-const settings_data_t def_settings_data = {.backlight = 0,
+const settings_data_t def_settings_data = {.settings_version = SETTINGS_DATA_VERSION,
+                                           .backlight = 0,
                                            .auto_gen_amiibo = 0,
                                            .auto_gen_amiibolink = 0,
                                            .sleep_timeout_sec = 30,
@@ -39,6 +40,8 @@ const settings_data_t def_settings_data = {.backlight = 0,
                                         };
 
 settings_data_t m_settings_data = {0};
+
+int32_t settings_save();
 
 #define BOOL_VALIDATE(expr, default_val)                                                                               \
     if ((expr) != 0 && (expr) != 1) {                                                                                  \
@@ -104,6 +107,15 @@ int32_t settings_init() {
     err = p_driver->read_file_data(SETTINGS_FILE_NAME, &m_settings_data, sizeof(settings_data_t));
     if (err < 0) {
         return NRF_ERROR_INVALID_STATE;
+    }
+
+    // If the saved settings file was written by an older firmware (no version field,
+    // or a different version), reset to the new defaults so language/brightness/
+    // contrast/app-management always start with the desired configuration.
+    if (m_settings_data.settings_version != SETTINGS_DATA_VERSION) {
+        NRF_LOG_INFO("settings version mismatch, reset to defaults");
+        memcpy(&m_settings_data, &def_settings_data, sizeof(settings_data_t));
+        settings_save(); // write back the new-format settings so later manual changes persist
     }
 
     validate_settings();
