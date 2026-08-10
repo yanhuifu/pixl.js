@@ -11,7 +11,10 @@
 #define AMIIDB_SORT_COLUMN_DEFAULT 0
 #define AMIIDB_SORT_COLUMN_NAME 1
 
+#define SETTINGS_DATA_VERSION 0xA5C5ED01
+
 typedef struct {
+    uint32_t settings_version; // must be the FIRST field; used to detect old/incompatible settings
     bool backlight; // deprecated, keep for capability issue
     uint8_t sleep_timeout_sec;
     bool dirty;
