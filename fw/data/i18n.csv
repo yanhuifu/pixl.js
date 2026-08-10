@@ -9,7 +9,7 @@ _L_ERR_CODE,Error Code,错误码,錯誤碼,Código error,Hibakód,Fehlercode,Cod
 _L_FAILED,Failed,失败,失敗,Fallido,,,,,,,,,Ошибка,Niepowodzenie,Misslyckades
 _L_BYTES,Bytes,字节,字節,,,,,,,,,,байт,,
 _L_APP_AMIIBO,Amiibo Emulator,Amiibo模拟器,Amiibo模擬器,Emulador de amiibo,Amiibo Emulátor,Amiibo Emulator,Emulateur Amiibo,Amiibo-Emulator,Emulador de Amiibo,Amiiboエミュレータ,Emulador de Amiibo,Emulatore Amiibo,Эмулятор Amiibo,Emulator Amiibo,Amiibo-emulator
-_L_APP_AMIIBOLINK,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink
+_L_APP_AMIIBOLINK,AmiiboLink,小程序联动,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink,AmiiboLink
 _L_APP_BLE,BLE File Transfer,蓝牙传输,藍牙傳送,Transferencia BLE,BLE Fájltovábbítás,BLE Dateitransfer,Transfert de Fichiers BLE,BLE Bestandsoverdracht,Transferência de Arquivos BLE,BLEファイル転送,Transferência BLE,Trasferimento file BLE,Передача файлов,Transfer Plików BLE,BLE Filöverföring
 _L_APP_BLE_TITLE,BLE File Transfer,蓝牙传输,藍牙傳送,Transferencia BLE,BLE Fájltovábbítás,BLE Dateitransfer,Transfert de Fichiers BLE,BLE Bestandsoverdracht,Transferência de Arquivos BLE,BLEファイル転送,Transferência BLE,Trasferimento file BLE,по Bluetooth,Transfer Plików,BLE Filöverföring
 _L_APP_PLAYER,Video Player,动画播放器,動畫播放器,Reproductor vídeo,Video Lejátszó,Videoplayer,Lecteur Vidéo,Videospeler,Reprodutor de Vídeo,ビデオプレーヤー,Reprodutor de vídeo,Lettore video,Видеоплеер,Odtwarzacz Video,Videospelare
