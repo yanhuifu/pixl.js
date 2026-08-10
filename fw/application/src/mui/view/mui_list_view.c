@@ -1,7 +1,6 @@
 #include "mui_list_view.h"
 #include "nrf_log.h"
 #include "settings.h"
-#include "mini_app_launcher.h"
 
 #define LIST_ITEM_HEIGHT 13
 
@@ -235,15 +234,16 @@ static void mui_list_view_on_input(mui_view_t *p_view, mui_input_event_t *event)
             break;
 
         case INPUT_KEY_CENTER:
-            if (event->type == INPUT_TYPE_LONG) {
-                // long press center button = go back
-                mini_app_launcher_back(mini_app_launcher());
-                break;
-            }
-            if (p_mui_list_view->selected_cb && event->type == INPUT_TYPE_SHORT) {
-                p_mui_list_view->selected_cb(
-                    MUI_LIST_VIEW_EVENT_SELECTED, p_mui_list_view,
-                    mui_list_item_array_get(p_mui_list_view->items, p_mui_list_view->focus_index));
+            if (p_mui_list_view->selected_cb) {
+                if (event->type == INPUT_TYPE_SHORT) {
+                    p_mui_list_view->selected_cb(
+                        MUI_LIST_VIEW_EVENT_SELECTED, p_mui_list_view,
+                        mui_list_item_array_get(p_mui_list_view->items, p_mui_list_view->focus_index));
+                } else if (event->type == INPUT_TYPE_LONG) {
+                    p_mui_list_view->selected_cb(
+                        MUI_LIST_VIEW_EVENT_LONG_SELECTED, p_mui_list_view,
+                        mui_list_item_array_get(p_mui_list_view->items, p_mui_list_view->focus_index));
+                }
             }
             break;
         }
