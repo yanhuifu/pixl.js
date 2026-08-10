@@ -20,7 +20,7 @@ const settings_data_t def_settings_data = {.settings_version = SETTINGS_DATA_VER
                                            .backlight = 0,
                                            .auto_gen_amiibo = 0,
                                            .auto_gen_amiibolink = 0,
-                                           .sleep_timeout_sec = 30,
+                                           .sleep_timeout_sec = 180,
                                            .skip_driver_select = 0,
                                            .bat_mode = DEFAULT_BAT_MODE,
                                            .amiibo_link_ver = BLE_AMIIBOLINK_VER_V1,
@@ -54,7 +54,7 @@ int32_t settings_save();
 
 static void validate_settings() {
     if (m_settings_data.sleep_timeout_sec > 180) {
-        m_settings_data.sleep_timeout_sec = 30;
+        m_settings_data.sleep_timeout_sec = 180;
     }
 
     if (m_settings_data.amiibo_link_ver != BLE_AMIIBOLINK_VER_V1 &&
