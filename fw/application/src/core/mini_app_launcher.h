@@ -25,6 +25,5 @@ void mini_app_launcher_post_event(mini_app_launcher_t* p_launcher, uint32_t id, 
 void* mini_app_launcher_get_app_handle(mini_app_launcher_t* p_launcher, uint32_t id);
 
 void mini_app_launcher_run_with_retain_data(mini_app_launcher_t *p_launcher, uint32_t id, uint8_t *retain_data);
-void mini_app_launcher_back(mini_app_launcher_t *p_launcher);
 
 #endif 
