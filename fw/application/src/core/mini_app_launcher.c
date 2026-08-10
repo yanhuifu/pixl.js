@@ -73,6 +73,25 @@ void mini_app_launcher_exit(mini_app_launcher_t* p_launcher){
     mini_app_launcher_kill(p_launcher, p_launcher->p_main_app_inst->p_app->id);
 }
 
+void mini_app_launcher_back(mini_app_launcher_t* p_launcher){
+    mini_app_inst_t *inst = p_launcher->p_main_app_inst;
+    if (inst == NULL) {
+        return;
+    }
+    if (inst->p_app->id == MINI_APP_ID_DESKTOP || inst->p_app->id == MINI_APP_ID_STATUS_BAR) {
+        return;
+    }
+    mui_scene_dispatcher_t *p_dispatcher = mui_scene_dispatcher_get_active();
+    if (p_dispatcher == NULL) {
+        return;
+    }
+    if (mui_scene_dispatcher_stack_size(p_dispatcher) > 1) {
+        mui_scene_dispatcher_previous_scene(p_dispatcher);
+    } else {
+        mini_app_launcher_kill(p_launcher, inst->p_app->id);
+    }
+}
+
 void mini_app_launcher_init(mini_app_launcher_t *p_launcher, uint32_t wakeup_reason) {
 
     mui_app_inst_dict_init(p_launcher->app_inst_dict);
