@@ -87,9 +87,8 @@ void mini_app_launcher_back(mini_app_launcher_t* p_launcher){
     }
     if (mui_scene_dispatcher_stack_size(p_dispatcher) > 1) {
         mui_scene_dispatcher_previous_scene(p_dispatcher);
-    } else {
-        mini_app_launcher_kill(p_launcher, inst->p_app->id);
     }
+    // at the app's first screen: long press does nothing (only goes back one screen each time)
 }
 
 void mini_app_launcher_init(mini_app_launcher_t *p_launcher, uint32_t wakeup_reason) {
