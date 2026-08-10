@@ -1,7 +1,5 @@
 #include "mui_scene_dispatcher.h"
 
-static mui_scene_dispatcher_t *p_active_scene_dispatcher = NULL;
-
 mui_scene_dispatcher_t *mui_scene_dispatcher_create() {
     mui_scene_dispatcher_t *p_dispatcher = mui_mem_malloc(sizeof(mui_scene_dispatcher_t));
     scene_id_stack_init(p_dispatcher->scene_id_stack);
@@ -18,9 +16,6 @@ void mui_scene_dispatcher_free(mui_scene_dispatcher_t *p_dispatcher) {
     //      uint32_t cur_scene_id = *scene_id_stack_back(p_dispatcher->scene_id_stack);
     //      p_dispatcher->p_scene_defines[cur_scene_id].exit_cb(p_dispatcher->user_data);
     //  }
-    if (p_dispatcher == p_active_scene_dispatcher) {
-        p_active_scene_dispatcher = NULL;
-    }
     scene_id_stack_clear(p_dispatcher->scene_id_stack);
     mui_mem_free(p_dispatcher);
 }
@@ -44,7 +39,6 @@ void mui_scene_dispatcher_set_user_data(mui_scene_dispatcher_t *p_dispatcher, vo
 }
 
 void mui_scene_dispatcher_next_scene(mui_scene_dispatcher_t *p_dispatcher, uint32_t scene_id) {
-    p_active_scene_dispatcher = p_dispatcher;
     if (scene_id_stack_size(p_dispatcher->scene_id_stack) > 0) {
         uint32_t cur_scene_id = *scene_id_stack_back(p_dispatcher->scene_id_stack);
         p_dispatcher->p_scene_defines[cur_scene_id].exit_cb(p_dispatcher->user_data);
@@ -55,7 +49,6 @@ void mui_scene_dispatcher_next_scene(mui_scene_dispatcher_t *p_dispatcher, uint3
 
 void mui_scene_dispatcher_back_scene(mui_scene_dispatcher_t *p_dispatcher, uint32_t step) {
 
-    p_active_scene_dispatcher = p_dispatcher;
     uint32_t cur_scene_id = *scene_id_stack_back(p_dispatcher->scene_id_stack);
     uint32_t pre_scene_id;
     while (scene_id_stack_size(p_dispatcher->scene_id_stack) > 0 && step > 0) {
@@ -75,7 +68,6 @@ void mui_scene_dispatcher_back_scene(mui_scene_dispatcher_t *p_dispatcher, uint3
 }
 
 void mui_scene_dispatcher_previous_scene(mui_scene_dispatcher_t *p_dispatcher) {
-    p_active_scene_dispatcher = p_dispatcher;
     if (scene_id_stack_size(p_dispatcher->scene_id_stack) > 0) {
         uint32_t cur_scene_id;
         scene_id_stack_pop_back(&cur_scene_id, p_dispatcher->scene_id_stack);
@@ -98,10 +90,4 @@ uint32_t mui_scene_dispatcher_current_scene(mui_scene_dispatcher_t *p_dispatcher
         return *p_scene_id;
     }
     return 0;
-}
-
-mui_scene_dispatcher_t *mui_scene_dispatcher_get_active(void) { return p_active_scene_dispatcher; }
-
-uint32_t mui_scene_dispatcher_stack_size(mui_scene_dispatcher_t *p_dispatcher) {
-    return scene_id_stack_size(p_dispatcher->scene_id_stack);
 }
