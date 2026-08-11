@@ -1,0 +1,30 @@
+# fw/scripts/en_names.csv —— Amiibo 英文名 / 中文名映射表（供 add_series_from_bins.py 使用）
+#
+# 格式（每行一种，逗号分隔）：
+#   amiibo,<16位ID>,<英文名>,<中文名>
+#   series,<系列文件夹名>,<英文系列名>,<中文系列名>
+#
+# 规则说明：
+#   1) bin 文件名是中文时 -> 中文名自动取自文件名，这里的"英文名"决定英文/其它语言模式显示什么。
+#   2) 只填英文名也行，中文名可留空（比如 series 行通常只需英文名）。
+#   3) 以后新加一张卡，如果 bin 文件名是中文，就在文件末尾加一行：
+#        amiibo,<该卡的16位ID>,<英文名>
+#      然后重新跑 add_series_from_bins.py（或在 GitHub 上触发一次 Actions 编译）即可。
+#   4) # 开头的行是注释，不会被读取。
+#
+amiibo,0807000004f70402,Shiver,莎莎
+amiibo,0808000004f80402,Frye,曼曼
+amiibo,0809000004f90402,Big Man,鬼福
+amiibo,0000040004c10102,Elephant Mario,大象玛丽欧
+amiibo,000a010004c20102,Captain Toad & Talking Flower,奇诺比奥队长&闲聊花花
+amiibo,0025010004c30102,Poplin & Prince Florian,苞普林&花洛里安王子
+amiibo,3540000005032002,Grace,格蕾丝
+amiibo,3541000005042002,Leon,里昂
+amiibo,3580000005062102,Diana,戴安娜
+amiibo,22410000041e0002,Pyra,焰
+amiibo,22420000041f0002,Mythra,光
+series,斯普拉遁涂击队,Splatoon Raiders,斯普拉遁涂击队
+series,马力欧惊奇玲玲公园,Super Mario Bros. Wonder,马力欧惊奇玲玲公园
+series,生化危机9安魂曲,Resident Evil 9: Requiem,生化危机9安魂曲
+series,异度神剑2,Xenoblade Chronicles 2,异度神剑2
+series,识质存在,,识质存在
